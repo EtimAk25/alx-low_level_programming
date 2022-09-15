@@ -1,26 +1,51 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - Prints all possible combinations of two different digits,
- *        in ascending order
- *
- * Return: Always 0.
+ * print_times_table - prints times table
+ * @n : times table to use
+ * Return:void
  */
-int main(void)
+
+void print_times_table(int n)
 {
-int digit1, digit2;
-for (digit1 = 0; digit1 < 9; digit1++)
+
+int a = 0, rep, b;
+
+if (n < 0 || n > 15)
+	return;
+
+while (a <= n)
 {
-for (digit2 = digit1 + 1; digit2 < 10; digit2++)
-{
-putchar((digit1 % 10) + '0');
-putchar((digit2 % 10) + '0');
-if (digit1 == 8 && digit2 == 9)
-continue;
-putchar(',');
-putchar(' ');
+	for (b = 0; b <= n; b++)
+	{
+		rep = a * b;
+		if (b == 0)
+			_putchar('0' + rep);
+		else if (rep < 10)
+		{
+			_putchar(' ');
+			_putchar(' ');
+			_putchar('0' + rep);
+		}
+		else if (rep < 100)
+		{
+			_putchar(' ');
+			_putchar('0' + rep / 10);
+			_putchar('0' + rep % 10);
+		}
+		else
+		{
+			_putchar('0' + rep / 100);
+			_putchar('0' + (rep - 100) / 10);
+			_putchar('0' + rep % 10);
+		}
+		if (b < n)
+		{
+			_putchar(',');
+			_putchar(' ');
+		}
+	}
+	_putchar('\n');
+	a++;
 }
-}
-putchar('\n');
-return (0);
 }
